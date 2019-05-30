@@ -211,7 +211,7 @@ fi
 status "Initializing vagrant box"
 cd "${vagrant_dir}"
 
-vagrant up --provider virtualbox 2> >(logError) | {
+vagrant up --provider parallels 2> >(logError) | {
   while IFS= read -r line
   do
     filterVagrantOutput "${line}"

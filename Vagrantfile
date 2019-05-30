@@ -41,10 +41,10 @@ host_magento_dir = host_vagrant_dir + '/magento2ce'
 
 VAGRANT_API_VERSION = 2
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-    config.vm.box = "paliarush/magento2.ubuntu"
-    config.vm.box_version = "~> 1.1"
+    config.vm.box = "minioak/magento2.ubuntu"
+    config.vm.box_version = "~> 1.3"
 
-    config.vm.provider "virtualbox" do |vb|
+    config.vm.provider "parallels" do |vb|
         vb.memory = guest_memory
         vb.cpus = guest_cpus
         # Uncomment option below to avoid issues with VirtualBox on Windows 10
@@ -52,7 +52,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     end
 
     config.vm.synced_folder '.', '/vagrant', disabled: true
-    config.vm.synced_folder './etc', '/vagrant/etc', mount_options: ["dmode=775,fmode=664"]
+    config.vm.synced_folder './etc', '/vagrant/etc', mount_options: []
     config.vm.synced_folder './scripts', '/vagrant/scripts'
     config.vm.synced_folder './log', '/vagrant/log'
     config.vm.synced_folder './.idea', '/vagrant/.idea', create: true
@@ -119,4 +119,5 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
         node.vm.network :forwarded_port, guest: 22, host: forwarded_ssh_port
     end
     config.ssh.guest_port = forwarded_ssh_port
+    config.ssh.host = "127.0.0.1"
 end

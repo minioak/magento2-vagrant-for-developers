@@ -38,7 +38,7 @@ php_version=$8
 # TODO: Remove support for deprecated argument use_php7
 if [[ -z ${php_version} ]]; then
     if [[ ${use_php7} -eq 1 ]]; then
-        php_version="7.0"
+        php_version="7.2"
     else
         php_version="5.6"
     fi
