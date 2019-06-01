@@ -220,6 +220,8 @@ vagrant up --provider parallels 2> >(logError) | {
   filterVagrantOutput "${lastline}"
 }
 
+vagrant ssh -c "/vagrant/scripts/guest/link_configs"
+
 bash "${vagrant_dir}/scripts/host/check_mounted_directories.sh"
 
 if [[ ${force_project_cleaning} -eq 1 ]] && [[ ${force_phpstorm_config_cleaning} -eq 1 ]]; then
